@@ -25,9 +25,7 @@ data_file = str(config['fif'])
 raw = mne.io.read_raw_fif(data_file)
 
 # Print info
-textinfo = print(raw.info)
-
-f=open("output.txt", "w")
-f.write(str(textinfo))
+f=open("out_dir/output.txt", "w")
+print(raw.info, file=f)
 f.close()
 
