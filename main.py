@@ -44,7 +44,7 @@ plt.close('all')
 ica = mne.preprocessing.ICA(n_components=20, random_state=97, max_iter=800)
 ica.fit(raw)
 ica.exclude = [1, 2]  # details on how we picked these are omitted here
-fig=ica.plot_properties(raw, picks=ica.exclude)
+ica.plot_properties(raw, picks=ica.exclude)
 
 plt.savefig('out_dir/3_ica.png')
 plt.close('all')
