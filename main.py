@@ -32,18 +32,18 @@ f.close()
 raw.plot(duration=5, n_channels=30)
 
 plt.savefig('out_dir/1_channels.png')
-plt.close('all')
+#plt.close('all')
 
 # Plot psd
 raw.plot_psd(fmax=50)
 
 plt.savefig('out_dir/2_psd.png')
-plt.close('all')
+#plt.close('all')
 
 # set up and fit the ICA
 ica = mne.preprocessing.ICA(n_components=20, random_state=97, max_iter=800)
 ica.fit(raw)
-ica.exclude = [1, 2]  # details on how we picked these are omitted here
+ica.exclude = [1]  # details on how we picked these are omitted here
 ica.plot_properties(raw, picks=ica.exclude)
 
 plt.savefig('out_dir/3_ica.png')
