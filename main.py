@@ -29,3 +29,5 @@ f=open("out_dir/output.txt", "w")
 print(raw.info, file=f)
 f.close()
 
+raw.plot_psd(fmax=50)
+
