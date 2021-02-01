@@ -6,4 +6,4 @@ Test app for Brainlife to read MEEG files using MNE
 
 1.2 - PSD
 
-1.2 - ICA
+1.3 - ICA
