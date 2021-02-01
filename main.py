@@ -10,7 +10,7 @@
 import json
 import numpy as np
 import mne
-
+from matplotlib import pyplot as plt
 
 # load inputs from config.json
 with open('config.json') as config_json:
@@ -25,9 +25,11 @@ data_file = str(config['fif'])
 raw = mne.io.read_raw_fif(data_file)
 
 # Print info
-f=open("out_dir/output.txt", "w")
+f=open('out_dir/output.txt', 'w')
 print(raw.info, file=f)
 f.close()
 
+# Plot psd
 raw.plot_psd(fmax=50)
-
+plt.savefig('out_dir/psd.png')
+plt.close('all')
