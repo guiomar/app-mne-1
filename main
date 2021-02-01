@@ -17,4 +17,20 @@ singularity exec docker://brainlife/mne:0.22.0 python3 main.py
 #parse config.json for input parameters (here, we are pulling "fif")
 #fif=$(jq -r .fif config.json)
 #pip install mne
-#python ./main.py $fif
+#python main.py
+
+
+#store QC graph on product.json
+cat << EOF > product.json
+{
+    "brainlife": [
+        { 
+            "type": "image/png", 
+	        "name": "psd(meg sensors)",
+            "base64": "$(base64 -w 0 out_dir/psd.png)"
+        }
+    ]
+}
+EOF
+
+echo done!	
