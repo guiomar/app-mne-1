@@ -10,8 +10,9 @@
 import json
 import numpy as np
 import mne
-#from matplotlib import pyplot as plt
+import scikit-learn
 
+#from matplotlib import pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
