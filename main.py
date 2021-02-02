@@ -53,5 +53,5 @@ ica.exclude = [1]  # details on how we picked these are omitted here
 ica.plot_properties(raw, picks=ica.exclude)
 
 plt.savefig('out_dir/3_ica.png')
-plt.close()
+plt.close('all')
 
