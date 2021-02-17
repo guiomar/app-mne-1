@@ -5,53 +5,28 @@
 # Author: Guiomar Niso
 # Indiana University
 
+# Required libraries
+# pip install mne-bids coloredlogs tqdm pandas scikit-learn json_tricks fire
+
 # set up environment
-#import sys
+#import mne-study-template
+import os
 import json
-import numpy as np
-import mne
-import scikit-learn
-
-#from matplotlib import pyplot as plt
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
 
-# load inputs from config.json
+# Path to mne-study-template 
+mypath = '/Users/guiomar/Documents/GitHub/mne-study-template'
+# Path to config file (eventually this should be extracted from brainlife config.json)
+mneconfigpath = '/Users/guiomar/Documents/GitHub/app-mne-1/mne_config.py'
+
+# Populate mne_config.py file with brainlife config.json
+# - load inputs from config.json
 with open('config.json') as config_json:
     config = json.load(config_json)
 
-# Load into variables predefined code inputs
-data_file = str(config['fif'])
+#data_file = str(config['fif'])
 
-#data_file=(sys.argv[1])
 
-# Read meg .fif file
-raw = mne.io.read_raw_fif(data_file)
-
-# Print info
-f=open('out_dir/output.txt', 'w')
-print(raw.info, file=f)
-f.close()
-
-raw.plot(duration=5, n_channels=30)
-
-plt.savefig('out_dir/1_channels.png')
-plt.close()
-
-# Plot psd
-raw.plot_psd(fmax=50)
-
-plt.savefig('out_dir/2_psd.png')
-plt.close()
-
-# set up and fit the ICA
-ica = mne.preprocessing.ICA(n_components=20, random_state=97, max_iter=800)
-ica.fit(raw)
-ica.exclude = [1]  # details on how we picked these are omitted here
-ica.plot_properties(raw, picks=ica.exclude)
-
-plt.savefig('out_dir/3_ica.png')
-plt.close('all')
-
+# Run mne-study-template python script
+os.system( mypath + '/run.py --config=' + mneconfigpath + '\
+    --steps=preprocessing,sensor,report')
