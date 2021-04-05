@@ -4,7 +4,7 @@ Auditory MEG
 
 study_name = 'ds000246'
 bids_root = '/Users/guiomar/Projects/ds000246'
-deriv_root = '/out_dir'
+deriv_root = 'out_dir'
 runs = ['01']
 l_freq = .3
 h_freq = 100.
