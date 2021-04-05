@@ -13,20 +13,22 @@
 import os
 import json
 
+# Current path
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 # Path to mne-study-template 
-mypath = '/Users/guiomar/Documents/GitHub/mne-study-template'
-# Path to config file (eventually this should be extracted from brainlife config.json)
-mneconfigpath = '/Users/guiomar/Documents/GitHub/app-mne-1/mne_config.py'
+mnest_path = '/Users/guiomar/Documents/GitHub/mne-bids-pipeline'
+
 
 # Populate mne_config.py file with brainlife config.json
 # - load inputs from config.json
-with open('config.json') as config_json:
-    config = json.load(config_json)
+#with open(__location__+'/config.json') as config_json:
+#    config = json.load(config_json)
 
-#data_file = str(config['fif'])
+#bids_root = str(config['fif'])
 
 
 # Run mne-study-template python script
-os.system( mypath + '/run.py --config=' + mneconfigpath + '\
+os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config.py \
     --steps=preprocessing,sensor,report')
