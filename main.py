@@ -48,12 +48,9 @@ on_error = 'debug'
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
 subjects = ['01']
-rename_events = {'Smiley': 'Emoji',
-                 'Button': 'Switch'}
+rename_events = {'Smiley': 'Emoji','Button': 'Switch'}
 conditions = ['Auditory', 'Visual', 'Auditory/Left', 'Auditory/Right']
-contrasts = [('Visual', 'Auditory'),
-             ('Auditory/Right', 'Auditory/Left')]
-
+contrasts = [('Visual', 'Auditory'),('Auditory/Right', 'Auditory/Left')]
 ch_types = ['meg']
 mf_reference_run = '01'
 find_flat_channels_meg = True
@@ -74,7 +71,7 @@ fname = 'mne_config1.py'
 
 with open(fname, 'w') as f:
     #f.write('bids_root = '  + repr(bids_root)+'\n')
-   '''
+    '''
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
     f.write('subjects = {}'.format(subjects)+'\n')
@@ -88,6 +85,7 @@ with open(fname, 'w') as f:
     f.write('contrasts = {}'.format(contrasts)+'\n')
     f.write('decode = {}'.format(decode)+'\n')
     '''
+
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
     f.write('subjects = {}'.format(subjects)+'\n')
