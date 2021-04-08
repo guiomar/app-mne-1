@@ -64,5 +64,8 @@ with open(fname, 'w') as f:
     f.close()
 
 # Run mne-study-template python script
-os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config.py \
+os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config1.py \
     --steps=preprocessing,sensor,report')
+
+
+# Find the reports and make a copy in out_html folder
