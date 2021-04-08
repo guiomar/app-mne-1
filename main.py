@@ -74,6 +74,7 @@ fname = 'mne_config1.py'
 
 with open(fname, 'w') as f:
     #f.write('bids_root = '  + repr(bids_root)+'\n')
+   '''
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
     f.write('subjects = {}'.format(subjects)+'\n')
@@ -86,6 +87,19 @@ with open(fname, 'w') as f:
     f.write('conditions = {}'.format(conditions)+'\n')
     f.write('contrasts = {}'.format(contrasts)+'\n')
     f.write('decode = {}'.format(decode)+'\n')
+    '''
+    f.write("bids_root = '{}'".format(bids_root)+'\n')
+    f.write("deriv_root = '{}'".format(deriv_root)+'\n')
+    f.write('subjects = {}'.format(subjects)+'\n')
+    f.write('ch_types = {}'.format(ch_types)+'\n')
+    f.write('rename_events = {}'.format(reject)+'\n')
+    f.write('conditions = {}'.format(conditions)+'\n')
+    f.write('contrasts = {}'.format(contrasts)+'\n')
+    f.write('mf_reference_run = {}'.format(decode)+'\n')
+    f.write('find_flat_channels_meg = {}'.format(decode)+'\n')
+    f.write('find_noisy_channels_meg = {}'.format(decode)+'\n')
+    f.write('use_maxwell_filter = {}'.format(decode)+'\n')
+    f.write('process_er = {}'.format(decode)+'\n')
 
     f.close()
 
