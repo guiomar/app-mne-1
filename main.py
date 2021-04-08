@@ -93,7 +93,7 @@ with open(fname, 'w') as f:
     f.write('rename_events = {}'.format(rename_events)+'\n')
     f.write('conditions = {}'.format(conditions)+'\n')
     f.write('contrasts = {}'.format(contrasts)+'\n')
-    f.write('mf_reference_run = '{}''.format(mf_reference_run)+'\n')
+    f.write("mf_reference_run = '{}'".format(mf_reference_run)+'\n')
     f.write('find_flat_channels_meg = {}'.format(find_flat_channels_meg)+'\n')
     f.write('find_noisy_channels_meg = {}'.format(find_noisy_channels_meg)+'\n')
     f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
