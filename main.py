@@ -27,7 +27,7 @@ with open(__location__+'/config.json') as config_json:
     config = json.load(config_json)
 
 #study_name = 'ds000246'
-bids_root = str(config['fif']) # '/Users/guiomar/Projects/ds000246'
+bids_root = str(config['raw']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
 subjects = ['0001']
 runs = ['01']
