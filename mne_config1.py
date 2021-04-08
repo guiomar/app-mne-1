@@ -1,4 +1,4 @@
-bids_root = '/meg.fif'
+bids_root = '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
 subjects = ['0001']
 runs = ['01']
