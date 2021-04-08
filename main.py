@@ -29,8 +29,8 @@ with open(__location__+'/config.json') as config_json:
 #study_name = 'ds000246'
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
-subjects = ['0001']
-runs = ['01']
+subjects = ['01']
+runs = ['1']
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
