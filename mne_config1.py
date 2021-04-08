@@ -1,0 +1,12 @@
+bids_root = '/meg.fif'
+deriv_root = 'out_dir'
+subjects = ['0001']
+runs = ['01']
+l_freq = 0.3
+h_freq = 100.0
+decim = 10
+ch_types = ['meg']
+reject = {'mag': 4e-12, 'eog': 0.00025}
+conditions = ['standard', 'deviant', 'button']
+contrasts = [('deviant', 'standard')]
+decode = True
