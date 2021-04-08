@@ -26,11 +26,12 @@ mnest_path = '/mne-bids-pipeline'
 with open(__location__+'/config.json') as config_json:
     config = json.load(config_json)
 
+'''
 #study_name = 'ds000246'
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
-subjects = ['01']
-runs = ['1']
+subjects = ['0001']
+runs = ['01']
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
@@ -41,6 +42,31 @@ contrasts = [('deviant', 'standard')]
 decode = True
 ##daysback = -365 * 110
 on_error = 'debug'
+'''
+
+#study_name = 'ds000248'
+bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
+deriv_root = 'out_dir'
+subjects = ['01']
+rename_events = {'Smiley': 'Emoji',
+                 'Button': 'Switch'}
+conditions = ['Auditory', 'Visual', 'Auditory/Left', 'Auditory/Right']
+contrasts = [('Visual', 'Auditory'),
+             ('Auditory/Right', 'Auditory/Left')]
+
+ch_types = ['meg']
+mf_reference_run = '01'
+find_flat_channels_meg = True
+find_noisy_channels_meg = True
+use_maxwell_filter = True
+process_er = True
+#noise_cov = 'emptyroom'
+
+bem_mri_images = 'FLASH'
+recreate_bem = True
+
+#reject = dict(mag=4e-12, eog=250e-6)
+
 
 # Create new MNE config .py file
 
