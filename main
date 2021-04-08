@@ -15,4 +15,7 @@ mkdir -p out_dir
 # singularity exec docker://brainlife/mne:0.22.0 python3 main.py
 
 #parse config.json for input parameters (here, we are pulling "fif")
-python main.py
+#python main.py
+singularity exec docker://brainlife/mne:0.23dev python3 main.py
+
+
