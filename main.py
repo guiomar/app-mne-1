@@ -26,7 +26,7 @@ mnest_path = '/mne-bids-pipeline'
 with open(__location__+'/config.json') as config_json:
     config = json.load(config_json)
 
-'''
+
 #study_name = 'ds000246'
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
@@ -63,7 +63,7 @@ bem_mri_images = 'FLASH'
 recreate_bem = True
 
 #reject = dict(mag=4e-12, eog=250e-6)
-
+'''
 
 # Create new MNE config .py file
 
@@ -71,7 +71,7 @@ fname = 'mne_config1.py'
 
 with open(fname, 'w') as f:
     #f.write('bids_root = '  + repr(bids_root)+'\n')
-    '''
+    
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
     f.write('subjects = {}'.format(subjects)+'\n')
@@ -98,7 +98,7 @@ with open(fname, 'w') as f:
     f.write('find_noisy_channels_meg = {}'.format(find_noisy_channels_meg)+'\n')
     f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
     f.write('process_er = {}'.format(process_er)+'\n')
-
+'''
     f.close()
 
 # Run mne-study-template python script
