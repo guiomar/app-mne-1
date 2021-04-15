@@ -30,23 +30,26 @@ with open(__location__+'/config.json') as config_json:
 #study_name = 'ds000246'
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
+
+
 subjects = ['0001']
 runs = ['1']
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
-ch_types = ['meg']
 reject = dict(mag=4e-12, eog=250e-6)
 conditions = ['standard', 'deviant', 'button']
 contrasts = [('deviant', 'standard')]
 decode = True
-##daysback = -365 * 110
+daysback = -365 * 110
 on_error = 'debug'
+
+
+ch_types = ['meg']
+
 '''
 
 #study_name = 'ds000248'
-bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
-deriv_root = 'out_dir'
 subjects = ['01']
 rename_events = {'Smiley': 'Emoji','Button': 'Switch'}
 conditions = ['Auditory', 'Visual', 'Auditory/Left', 'Auditory/Right']
