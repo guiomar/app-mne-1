@@ -37,7 +37,7 @@ runs = ['01']
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
-reject = dict(mag=4e-12, eog=250e-6)
+#reject = dict(mag=4e-12, eog=250e-6)
 conditions = ['standard', 'deviant', 'button']
 contrasts = [('deviant', 'standard')]
 decode = True
@@ -83,7 +83,7 @@ with open(fname, 'w') as f:
     f.write('h_freq = {}'.format(h_freq)+'\n')
     f.write('decim = {}'.format(decim)+'\n')
     f.write('ch_types = {}'.format(ch_types)+'\n')
-    f.write('reject = {}'.format(reject)+'\n')
+    f.write('reject = dict(mag=4e-12, eog=250e-6)\n')
     f.write('conditions = {}'.format(conditions)+'\n')
     f.write('contrasts = {}'.format(contrasts)+'\n')
     f.write('decode = {}'.format(decode)+'\n')
