@@ -27,6 +27,38 @@ with open(__location__+'/config.json') as config_json:
     config = json.load(config_json)
 
 
+
+bids_root = str(config['output']) 
+deriv_root = 'out_dir'
+
+# Bad channels
+find_flat_channels_meg = bool(config['find_flat_channels_meg'])
+find_noisy_channels_meg = bool(config['find_noisy_channels_meg'])
+
+# MAXFLTER (for fif)
+use_maxwell_filter = bool(config['use_maxwell_filter'])
+mf_st_duration = float(config['mf_st_duration'])
+mf_head_origin = str(config['mf_head_origin']) 
+mf_reference_run = str(config['mf_reference_run']) 
+mf_cal_fname = str(config['mf_cal_fname']) ##
+mf_ctc_fname = str(config['mf_ctc_fname']) ##
+    
+ # STIMULATION ARTIFACT  
+ fix_stim_artifact = bool(config['fix_stim_artifact'])
+ stim_artifact_tmin = float(config['stim_artifact_tmax'])
+ stim_artifact_tmax = float(config['stim_artifact_tmax'])
+
+ # FILTER
+ l_freq = float(config['l_freq'])
+ h_freq = float(config['h_freq'])
+ 
+# RESAMPLING
+ resample_sfreq = float(config['resample_sfreq'])
+ decim = int(config['decim'])
+
+
+
+'''
 #study_name = 'ds000246'
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
@@ -37,7 +69,7 @@ runs = ['01']
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
-#reject = dict(mag=4e-12, eog=250e-6)
+reject = dict(mag=4e-12, eog=250e-6)
 conditions = ['standard', 'deviant', 'button']
 contrasts = [('deviant', 'standard')]
 decode = True
@@ -46,6 +78,7 @@ on_error = 'debug'
 
 
 ch_types = ['meg']
+'''
 
 '''
 
@@ -79,29 +112,40 @@ with open(fname, 'w') as f:
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
     f.write('subjects = {}'.format(subjects)+'\n')
     f.write('runs = {}'.format(runs)+'\n')
+
+    # Bad channels
+    f.write('find_flat_channels_meg = {}'.format(find_flat_channels_meg)+'\n')
+    f.write('find_noisy_channels_meg = {}'.format(find_noisy_channels_meg)+'\n')
+    
+    # MAXFLTER (for fif)
+    f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
+    f.write('mf_st_duration = {}'.format(mf_st_duration)+'\n')
+    f.write('mf_head_origin = {}'.format(mf_head_origin)+'\n')
+    f.write('mf_reference_run = {}'.format(mf_reference_run)+'\n')
+    f.write('mf_cal_fname = {}'.format(mf_cal_fname)+'\n')
+    f.write('mf_ctc_fname = {}'.format(mf_ctc_fname)+'\n')
+    
+    # STIMULATION ARTIFACT    
+    f.write('fix_stim_artifact = {}'.format(fix_stim_artifact)+'\n')
+    f.write('stim_artifact_tmin = {}'.format(stim_artifact_tmin)+'\n')
+    f.write('stim_artifact_tmax = {}'.format(stim_artifact_tmax)+'\n')
+    
+     # FILTER
     f.write('l_freq = {}'.format(l_freq)+'\n')
     f.write('h_freq = {}'.format(h_freq)+'\n')
-    f.write('decim = {}'.format(decim)+'\n')
+    
+     # RESAMPLING
+    f.write('resample_sfreq = {}'.format(resample_sfreq)+'\n')
+    f.write('decim = {}'.format(decim)+'\n')   
+
+
+
     f.write('ch_types = {}'.format(ch_types)+'\n')
-    f.write('reject = dict(mag=4e-12, eog=250e-6)\n')
+    f.write('reject = {}'.format(reject)+'\n')
     f.write('conditions = {}'.format(conditions)+'\n')
     f.write('contrasts = {}'.format(contrasts)+'\n')
     f.write('decode = {}'.format(decode)+'\n')
-    '''
-
-    f.write("bids_root = '{}'".format(bids_root)+'\n')
-    f.write("deriv_root = '{}'".format(deriv_root)+'\n')
-    f.write('subjects = {}'.format(subjects)+'\n')
-    f.write('ch_types = {}'.format(ch_types)+'\n')
-    f.write('rename_events = {}'.format(rename_events)+'\n')
-    f.write('conditions = {}'.format(conditions)+'\n')
-    f.write('contrasts = {}'.format(contrasts)+'\n')
-    #f.write("mf_reference_run = '{}'".format(mf_reference_run)+'\n')
-    f.write('find_flat_channels_meg = {}'.format(find_flat_channels_meg)+'\n')
-    f.write('find_noisy_channels_meg = {}'.format(find_noisy_channels_meg)+'\n')
-    f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
-    f.write('process_er = {}'.format(process_er)+'\n')
-'''
+ 
     f.close()
 
 # Run mne-study-template python script
