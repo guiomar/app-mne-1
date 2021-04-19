@@ -33,7 +33,7 @@ deriv_root = 'out_dir'
 
 
 subjects = ['0001']
-runs = ['1']
+runs = ['01']
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
