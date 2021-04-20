@@ -42,19 +42,19 @@ mf_head_origin = str(config['mf_head_origin'])
 mf_reference_run = str(config['mf_reference_run']) 
 mf_cal_fname = str(config['mf_cal_fname']) ##
 mf_ctc_fname = str(config['mf_ctc_fname']) ##
-    
- # STIMULATION ARTIFACT  
- fix_stim_artifact = bool(config['fix_stim_artifact'])
- stim_artifact_tmin = float(config['stim_artifact_tmax'])
- stim_artifact_tmax = float(config['stim_artifact_tmax'])
 
- # FILTER
- l_freq = float(config['l_freq'])
- h_freq = float(config['h_freq'])
+# STIMULATION ARTIFACT  
+fix_stim_artifact = bool(config['fix_stim_artifact'])
+stim_artifact_tmin = float(config['stim_artifact_tmax'])
+stim_artifact_tmax = float(config['stim_artifact_tmax'])
+
+# FILTER
+l_freq = float(config['l_freq'])
+h_freq = float(config['h_freq'])
  
 # RESAMPLING
- resample_sfreq = float(config['resample_sfreq'])
- decim = int(config['decim'])
+resample_sfreq = float(config['resample_sfreq'])
+decim = int(config['decim'])
 
 
 
