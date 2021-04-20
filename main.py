@@ -37,24 +37,24 @@ find_noisy_channels_meg = bool(config['find_noisy_channels_meg'])
 
 # MAXFLTER (for fif)
 use_maxwell_filter = bool(config['use_maxwell_filter'])
-mf_st_duration = float(config['mf_st_duration'])
-mf_head_origin = str(config['mf_head_origin']) 
-mf_reference_run = str(config['mf_reference_run']) 
-mf_cal_fname = str(config['mf_cal_fname']) ##
-mf_ctc_fname = str(config['mf_ctc_fname']) ##
+if config['mf_st_duration']:    mf_st_duration = float(config['mf_st_duration'])
+if config['mf_head_origin']:    mf_head_origin = str(config['mf_head_origin']) 
+if config['mf_reference_run']:  mf_reference_run = str(config['mf_reference_run']) 
+if config['mf_cal_fname']:      mf_cal_fname = str(config['mf_cal_fname']) ##
+if config['mf_ctc_fname']:      mf_ctc_fname = str(config['mf_ctc_fname']) ##
 
 # STIMULATION ARTIFACT  
 fix_stim_artifact = bool(config['fix_stim_artifact'])
-stim_artifact_tmin = float(config['stim_artifact_tmax'])
-stim_artifact_tmax = float(config['stim_artifact_tmax'])
+if config['stim_artifact_tmin']:  stim_artifact_tmin = float(config['stim_artifact_tmax'])
+if config['stim_artifact_tmax']:  stim_artifact_tmax = float(config['stim_artifact_tmax'])
 
 # FILTER
-l_freq = float(config['l_freq'])
-h_freq = float(config['h_freq'])
+if config['l_freq']:            l_freq = float(config['l_freq'])
+if config['h_freq']:            h_freq = float(config['h_freq'])
  
 # RESAMPLING
-resample_sfreq = float(config['resample_sfreq'])
-decim = int(config['decim'])
+if config['resample_sfreq']:    resample_sfreq = float(config['resample_sfreq'])
+if config['decim']:             decim = int(config['decim'])
 
 
 
@@ -69,6 +69,7 @@ runs = ['01']
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
+'''
 reject = dict(mag=4e-12, eog=250e-6)
 conditions = ['standard', 'deviant', 'button']
 contrasts = [('deviant', 'standard')]
@@ -78,7 +79,7 @@ on_error = 'debug'
 
 
 ch_types = ['meg']
-'''
+
 
 '''
 
@@ -119,24 +120,24 @@ with open(fname, 'w') as f:
     
     # MAXFLTER (for fif)
     f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
-    f.write('mf_st_duration = {}'.format(mf_st_duration)+'\n')
-    f.write('mf_head_origin = {}'.format(mf_head_origin)+'\n')
-    f.write('mf_reference_run = {}'.format(mf_reference_run)+'\n')
-    f.write('mf_cal_fname = {}'.format(mf_cal_fname)+'\n')
-    f.write('mf_ctc_fname = {}'.format(mf_ctc_fname)+'\n')
+    if config['mf_st_duration']:    f.write('mf_st_duration = {}'.format(mf_st_duration)+'\n')
+    if config['mf_head_origin']:    f.write('mf_head_origin = {}'.format(mf_head_origin)+'\n')
+    if config['mf_reference_run']:  f.write('mf_reference_run = {}'.format(mf_reference_run)+'\n')
+    if config['mf_cal_fname']:      f.write('mf_cal_fname = {}'.format(mf_cal_fname)+'\n')
+    if config['mf_ctc_fname']:      f.write('mf_ctc_fname = {}'.format(mf_ctc_fname)+'\n')
     
     # STIMULATION ARTIFACT    
     f.write('fix_stim_artifact = {}'.format(fix_stim_artifact)+'\n')
-    f.write('stim_artifact_tmin = {}'.format(stim_artifact_tmin)+'\n')
-    f.write('stim_artifact_tmax = {}'.format(stim_artifact_tmax)+'\n')
+    if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = {}'.format(stim_artifact_tmin)+'\n')
+    if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = {}'.format(stim_artifact_tmax)+'\n')
     
-     # FILTER
-    f.write('l_freq = {}'.format(l_freq)+'\n')
-    f.write('h_freq = {}'.format(h_freq)+'\n')
-    
-     # RESAMPLING
-    f.write('resample_sfreq = {}'.format(resample_sfreq)+'\n')
-    f.write('decim = {}'.format(decim)+'\n')   
+    # FILTER
+    if config['l_freq']:    f.write('l_freq = {}'.format(l_freq)+'\n')
+    if config['h_freq']:    f.write('h_freq = {}'.format(h_freq)+'\n')
+
+    # RESAMPLING
+    if config['resample_sfreq']:    f.write('resample_sfreq = {}'.format(resample_sfreq)+'\n')
+    if config['decim']:     f.write('decim = {}'.format(decim)+'\n')   
 
 
 
