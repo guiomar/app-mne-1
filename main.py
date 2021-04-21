@@ -132,7 +132,7 @@ with open(fname, 'w') as f:
 
     # Bad channels
     f.write('find_flat_channels_meg = {}'.format(bool(config['find_flat_channels_meg']))+'\n')
-    f.write('find_noisy_channels_meg = {}'.format(find_noisy_channels_meg)+'\n')
+    f.write('find_noisy_channels_meg = {}'.format(bool(config['find_noisy_channels_meg']))+'\n')
     
     # MAXFLTER (for fif)
     f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
@@ -161,9 +161,9 @@ with open(fname, 'w') as f:
     if config['reject_tmax']:       f.write('reject_tmax = {}'.format(reject_tmax)+'\n')
 
     # RENAME EXPERIMENTAL EVENTS
-    if config['rename_events']:             f.write('rerename_eventsject = {}'.format(reject)+'\n')
-    if config['on_rename_missing_events']:  f.write('on_rename_missing_events = {}'.format(reject)+'\n')
-    if config['event_repeated']:           f.write('event_repeated = {}'.format(reject)+'\n')
+    if config['rename_events']:             f.write('rerename_eventsject = {}'.format(rename_events)+'\n')
+    if config['on_rename_missing_events']:  f.write('on_rename_missing_events = {}'.format(on_rename_missing_events)+'\n')
+    if config['event_repeated']:           f.write('event_repeated = {}'.format(event_repeated)+'\n')
 
 
 
