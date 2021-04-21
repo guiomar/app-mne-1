@@ -101,7 +101,7 @@ with open(fname, 'w') as f:
     if config['mf_ctc_fname']:      f.write('mf_ctc_fname = {}'.format(config['mf_ctc_fname'])+'\n')
     
     # STIMULATION ARTIFACT    
-    f.write('fix_stim_artifact = {}'.format(fix_stim_artifact)+'\n')
+    f.write('fix_stim_artifact = {}'.format(config[fix_stim_artifact])+'\n')
     if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = {}'.format(config['stim_artifact_tmin'])+'\n')
     if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = {}'.format(config['stim_artifact_tmax'])+'\n')
     
