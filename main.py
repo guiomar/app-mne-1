@@ -66,9 +66,9 @@ if config['reject_tmin']:       reject_tmin = float(config['reject_tmin'])
 if config['reject_tmax']:       reject_tmax = float(config['reject_tmax'])
 
 # RENAME EXPERIMENTAL EVENTS
-if config['rename_events']:             rename_events = dict(config['rename_events']) 
-if config['on_rename_missing_events']:  on_rename_missing_events = Literal(config['on_rename_missing_events']) 
-if config['event_repeated']:            event_repeated = Literal(config['event_repeated']) 
+if config['rename_events']:             rename_events = (config['rename_events']) 
+if config['on_rename_missing_events']:  on_rename_missing_events = (config['on_rename_missing_events']) 
+if config['event_repeated']:            event_repeated = (config['event_repeated']) 
 
 # EPOCHING
 
