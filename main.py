@@ -114,7 +114,7 @@ with open(fname, 'w') as f:
     if config['decim']:             f.write('decim = {}'.format(config['decim'])+'\n')   
 
     # AUTOMATIC REJECTION OF ARTIFACTS
-    if config['reject']:            f.write("reject = '{}'".format(config['reject'])+'\n') 
+    if config['reject']:            f.write("reject = {}".format(config['reject'])+'\n') 
     if config['reject_tmin']:       f.write("reject_tmin = '{}'".format(config['reject_tmin'])+'\n')
     if config['reject_tmax']:       f.write("reject_tmax = '{}'".format(config['reject_tmax'])+'\n')
 
