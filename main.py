@@ -143,4 +143,4 @@ os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config1.py \
 # Find the reports and make a copy in out_html folder
 for dirpath, dirnames, filenames in os.walk("/out_dir"):
     for filename in [f for f in filenames if f.endswith(".html")]:
-        copyfile(os.path.join("/out_dir", filename), os.path.join("/html_report", filename))
+        copyfile(os.path.join("/out_dir", dirpath,filename), os.path.join("/html_report",filename))
