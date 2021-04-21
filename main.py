@@ -23,10 +23,8 @@ __location__ = os.path.realpath(
 mnest_path = '/mne-bids-pipeline'
 
 # Populate mne_config.py file with brainlife config.json
-# - load inputs from config.json
 with open(__location__+'/config.json') as config_json:
     config = json.load(config_json)
-
 
 
 bids_root = str(config['output']) 
@@ -34,46 +32,6 @@ deriv_root = 'out_dir'
 
 subjects = ['0001']
 runs = ['01']
-
-'''
-# Bad channels
-find_flat_channels_meg = bool(config['find_flat_channels_meg'])
-find_noisy_channels_meg = bool(config['find_noisy_channels_meg'])
-'''
-# MAXFLTER (for fif)
-use_maxwell_filter = bool(config['use_maxwell_filter'])
-if config['mf_st_duration']:    mf_st_duration = float(config['mf_st_duration'])
-if config['mf_head_origin']:    mf_head_origin = str(config['mf_head_origin']) 
-if config['mf_reference_run']:  mf_reference_run = str(config['mf_reference_run']) 
-if config['mf_cal_fname']:      mf_cal_fname = str(config['mf_cal_fname']) ##
-if config['mf_ctc_fname']:      mf_ctc_fname = str(config['mf_ctc_fname']) ##
-
-# STIMULATION ARTIFACT  
-fix_stim_artifact = bool(config['fix_stim_artifact'])
-if config['stim_artifact_tmin']:  stim_artifact_tmin = float(config['stim_artifact_tmax'])
-if config['stim_artifact_tmax']:  stim_artifact_tmax = float(config['stim_artifact_tmax'])
-
-# FILTER
-if config['l_freq']:            l_freq = float(config['l_freq'])
-if config['h_freq']:            h_freq = float(config['h_freq'])
- 
-# RESAMPLING
-if config['resample_sfreq']:    resample_sfreq = float(config['resample_sfreq'])
-if config['decim']:             decim = int(config['decim'])
-
-# AUTOMATIC REJECTION OF ARTIFACTS
-if config['reject']:            reject = config['reject']
-if config['reject_tmin']:       reject_tmin = float(config['reject_tmin'])
-if config['reject_tmax']:       reject_tmax = float(config['reject_tmax'])
-
-# RENAME EXPERIMENTAL EVENTS
-if config['rename_events']:             rename_events = config['rename_events']
-if config['on_rename_missing_events']:  on_rename_missing_events = config['on_rename_missing_events']
-if config['event_repeated']:            event_repeated = config['event_repeated']
-
-# EPOCHING
-
-
 
 '''
 #study_name = 'ds000246'
@@ -93,7 +51,6 @@ contrasts = [('deviant', 'standard')]
 decode = True
 daysback = -365 * 110
 on_error = 'debug'
-
 
 ch_types = ['meg']
 
@@ -175,12 +132,15 @@ with open(fname, 'w') as f:
  
     f.close()
 
+
+
+
 # Run mne-study-template python script
 os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config1.py \
     --steps=preprocessing,sensor,report')
 
 
 # Find the reports and make a copy in out_html folder
-for file in os.listdir("out_dir"):
-    if file.endswith(".html"):
-        copyfile(os.path.join(__location__,"out_dir", file), os.path.join(__location__,"html_report", file))
+for dirpath, dirnames, filenames in os.walk("/out_dir"):
+    for filename in [f for f in filenames if f.endswith(".html")]:
+        copyfile(os.path.join("/out_dir", filename), os.path.join("/html_report", filename))
