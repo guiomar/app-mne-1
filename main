@@ -12,11 +12,8 @@
 
 # make output directory
 mkdir -p out_dir
+mkdir -p html_report
 
-# run the actual python code
-# singularity exec docker://brainlife/mne:0.22.0 python3 main.py
-
-#parse config.json for input parameters (here, we are pulling "fif")
 #python main.py
 singularity exec docker://brainlife/mne:0.23dev python3 main.py
 
