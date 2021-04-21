@@ -61,7 +61,7 @@ if config['resample_sfreq']:    resample_sfreq = float(config['resample_sfreq'])
 if config['decim']:             decim = int(config['decim'])
 
 # AUTOMATIC REJECTION OF ARTIFACTS
-if config['reject']:            reject = dict(config['reject']) 
+if config['reject']:            reject = config['reject']
 if config['reject_tmin']:       reject_tmin = float(config['reject_tmin'])
 if config['reject_tmax']:       reject_tmax = float(config['reject_tmax'])
 
