@@ -158,17 +158,16 @@ with open(fname, 'w') as f:
     # AUTOMATIC REJECTION OF ARTIFACTS
     if config['reject']:            f.write('reject = {}'.format(reject)+'\n') 
     if config['reject_tmin']:       f.write('reject_tmin = {}'.format(reject_tmin)+'\n')
-    if config['reject_tmax']:       f.write('reject = {}'.format(reject_tmax)+'\n')
+    if config['reject_tmax']:       f.write('reject_tmax = {}'.format(reject_tmax)+'\n')
 
     # RENAME EXPERIMENTAL EVENTS
-    if config['rename_events']:             f.write('reject = {}'.format(reject)+'\n')
-    if config['on_rename_missing_events']:  f.write('reject = {}'.format(reject)+'\n')
-    if config['event_repeated']:           f.write('reject = {}'.format(reject)+'\n')
+    if config['rename_events']:             f.write('rerename_eventsject = {}'.format(reject)+'\n')
+    if config['on_rename_missing_events']:  f.write('on_rename_missing_events = {}'.format(reject)+'\n')
+    if config['event_repeated']:           f.write('event_repeated = {}'.format(reject)+'\n')
 
 
 
     f.write('ch_types = {}'.format(ch_types)+'\n')
-    f.write('reject = {}'.format(reject)+'\n')
     f.write('conditions = {}'.format(conditions)+'\n')
     f.write('contrasts = {}'.format(contrasts)+'\n')
     f.write('decode = {}'.format(decode)+'\n')
@@ -181,6 +180,6 @@ os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config1.py \
 
 
 # Find the reports and make a copy in out_html folder
-for file in os.listdir("/out_dir"):
+for file in os.listdir(__location__+"/out_dir"):
     if file.endswith(".html"):
-        copyfile(os.path.join("/out_dir", file), os.path.join("/html_report", file))
+        copyfile(os.path.join(__location__+"/out_dir", file), os.path.join(__location__+"/html_report", file))
