@@ -35,10 +35,11 @@ deriv_root = 'out_dir'
 subjects = ['0001']
 runs = ['01']
 
+'''
 # Bad channels
 find_flat_channels_meg = bool(config['find_flat_channels_meg'])
 find_noisy_channels_meg = bool(config['find_noisy_channels_meg'])
-
+'''
 # MAXFLTER (for fif)
 use_maxwell_filter = bool(config['use_maxwell_filter'])
 if config['mf_st_duration']:    mf_st_duration = float(config['mf_st_duration'])
@@ -131,39 +132,39 @@ with open(fname, 'w') as f:
     f.write('runs = {}'.format(runs)+'\n')
 
     # Bad channels
-    f.write('find_flat_channels_meg = {}'.format(bool(config['find_flat_channels_meg']))+'\n')
+    f.write('find_flat_channels_meg = {}'.format(config['find_flat_channels_meg'])+'\n')
     f.write('find_noisy_channels_meg = {}'.format(config['find_noisy_channels_meg'])+'\n')
     
     # MAXFLTER (for fif)
-    f.write('use_maxwell_filter = {}'.format(bool(config['use_maxwell_filter']))+'\n')
-    if config['mf_st_duration']:    f.write('mf_st_duration = {}'.format(mf_st_duration)+'\n')
-    if config['mf_head_origin']:    f.write('mf_head_origin = {}'.format(mf_head_origin)+'\n')
-    if config['mf_reference_run']:  f.write('mf_reference_run = {}'.format(mf_reference_run)+'\n')
-    if config['mf_cal_fname']:      f.write('mf_cal_fname = {}'.format(mf_cal_fname)+'\n')
-    if config['mf_ctc_fname']:      f.write('mf_ctc_fname = {}'.format(mf_ctc_fname)+'\n')
+    f.write('use_maxwell_filter = {}'.format(config['use_maxwell_filter'])+'\n')
+    if config['mf_st_duration']:    f.write('mf_st_duration = {}'.format(config['mf_st_duration'])+'\n')
+    if config['mf_head_origin']:    f.write('mf_head_origin = {}'.format(config['mf_st_dmf_head_originuration'])+'\n')
+    if config['mf_reference_run']:  f.write('mf_reference_run = {}'.format(config['mf_reference_run'])+'\n')
+    if config['mf_cal_fname']:      f.write('mf_cal_fname = {}'.format(config['mf_cal_fname'])+'\n')
+    if config['mf_ctc_fname']:      f.write('mf_ctc_fname = {}'.format(config['mf_ctc_fname'])+'\n')
     
     # STIMULATION ARTIFACT    
     f.write('fix_stim_artifact = {}'.format(fix_stim_artifact)+'\n')
-    if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = {}'.format(stim_artifact_tmin)+'\n')
-    if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = {}'.format(stim_artifact_tmax)+'\n')
+    if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = {}'.format(config['stim_artifact_tmin'])+'\n')
+    if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = {}'.format(config['stim_artifact_tmax'])+'\n')
     
     # FILTER
-    if config['l_freq']:    f.write('l_freq = {}'.format(l_freq)+'\n')
-    if config['h_freq']:    f.write('h_freq = {}'.format(h_freq)+'\n')
+    if config['l_freq']:    f.write('l_freq = {}'.format(config['l_freq'])+'\n')
+    if config['h_freq']:    f.write('h_freq = {}'.format(config['h_freq'])+'\n')
 
     # RESAMPLING
-    if config['resample_sfreq']:    f.write('resample_sfreq = {}'.format(resample_sfreq)+'\n')
-    if config['decim']:             f.write('decim = {}'.format(decim)+'\n')   
+    if config['resample_sfreq']:    f.write('resample_sfreq = {}'.format(config['resample_sfreq'])+'\n')
+    if config['decim']:             f.write('decim = {}'.format(config['decim'])+'\n')   
 
     # AUTOMATIC REJECTION OF ARTIFACTS
-    if config['reject']:            f.write('reject = {}'.format(reject)+'\n') 
-    if config['reject_tmin']:       f.write('reject_tmin = {}'.format(reject_tmin)+'\n')
-    if config['reject_tmax']:       f.write('reject_tmax = {}'.format(reject_tmax)+'\n')
+    if config['reject']:            f.write("reject = '{}'".format(config['reject'])+'\n') 
+    if config['reject_tmin']:       f.write("reject_tmin = '{}'".format(config['reject_tmin'])+'\n')
+    if config['reject_tmax']:       f.write("reject_tmax = '{}'".format(config['reject_tmax'])+'\n')
 
     # RENAME EXPERIMENTAL EVENTS
-    if config['rename_events']:             f.write('rerename_eventsject = {}'.format(rename_events)+'\n')
-    if config['on_rename_missing_events']:  f.write('on_rename_missing_events = {}'.format(on_rename_missing_events)+'\n')
-    if config['event_repeated']:           f.write('event_repeated = {}'.format(event_repeated)+'\n')
+    if config['rename_events']:             f.write("rerename_eventsject = '{}'".format(config['rerename_eventsject'])+'\n')
+    if config['on_rename_missing_events']:  f.write("on_rename_missing_events = '{}'".format(config['on_rename_missing_events'])+'\n')
+    if config['event_repeated']:            f.write("event_repeated = '{}'".format(config['event_repeated'])+'\n')
 
 
 
@@ -180,6 +181,6 @@ os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config1.py \
 
 
 # Find the reports and make a copy in out_html folder
-for file in os.listdir(__location__,"out_dir"):
+for file in os.listdir("out_dir"):
     if file.endswith(".html"):
         copyfile(os.path.join(__location__,"out_dir", file), os.path.join(__location__,"html_report", file))
