@@ -66,9 +66,9 @@ if config['reject_tmin']:       reject_tmin = float(config['reject_tmin'])
 if config['reject_tmax']:       reject_tmax = float(config['reject_tmax'])
 
 # RENAME EXPERIMENTAL EVENTS
-if config['rename_events']:             rename_events = (config['rename_events']) 
-if config['on_rename_missing_events']:  on_rename_missing_events = (config['on_rename_missing_events']) 
-if config['event_repeated']:            event_repeated = (config['event_repeated']) 
+if config['rename_events']:             rename_events = config['rename_events']) 
+if config['on_rename_missing_events']:  on_rename_missing_events = config['on_rename_missing_events']
+if config['event_repeated']:            event_repeated = config['event_repeated']
 
 # EPOCHING
 
@@ -132,10 +132,10 @@ with open(fname, 'w') as f:
 
     # Bad channels
     f.write('find_flat_channels_meg = {}'.format(bool(config['find_flat_channels_meg']))+'\n')
-    f.write('find_noisy_channels_meg = {}'.format(bool(config['find_noisy_channels_meg']))+'\n')
+    f.write('find_noisy_channels_meg = {}'.format(config['find_noisy_channels_meg'])+'\n')
     
     # MAXFLTER (for fif)
-    f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
+    f.write('use_maxwell_filter = {}'.format(bool(config['use_maxwell_filter']))+'\n')
     if config['mf_st_duration']:    f.write('mf_st_duration = {}'.format(mf_st_duration)+'\n')
     if config['mf_head_origin']:    f.write('mf_head_origin = {}'.format(mf_head_origin)+'\n')
     if config['mf_reference_run']:  f.write('mf_reference_run = {}'.format(mf_reference_run)+'\n')
