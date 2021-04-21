@@ -131,25 +131,25 @@ with open(fname, 'w') as f:
     f.write('runs = {}'.format(runs)+'\n')
 
     # Bad channels
-    f.write('find_flat_channels_meg = '+ config[find_flat_channels_meg] +'\n')
-    f.write('find_noisy_channels_meg = '+ config[find_noisy_channels_meg] +'\n')
+    f.write('find_flat_channels_meg = {}'.format(bool(config['find_flat_channels_meg']))+'\n')
+    f.write('find_noisy_channels_meg = {}'.format(find_noisy_channels_meg)+'\n')
     
     # MAXFLTER (for fif)
-    f.write('use_maxwell_filter = '+ config[use_maxwell_filter] +'\n')
-    if config['mf_st_duration']:    f.write('mf_st_duration = '+ config[mf_st_duration] +'\n')
-    if config['mf_head_origin']:    f.write('mf_head_origin = '+ config[mf_head_origin] +'\n')
-    if config['mf_reference_run']:  f.write('mf_reference_run = '+ config[mf_reference_run] +'\n')
-    if config['mf_cal_fname']:      f.write('mf_cal_fname = '+ config[mf_cal_fname] +'\n')
-    if config['mf_ctc_fname']:      f.write('mf_ctc_fname = '+ config[mf_ctc_fname] +'\n')
+    f.write('use_maxwell_filter = {}'.format(use_maxwell_filter)+'\n')
+    if config['mf_st_duration']:    f.write('mf_st_duration = {}'.format(mf_st_duration)+'\n')
+    if config['mf_head_origin']:    f.write('mf_head_origin = {}'.format(mf_head_origin)+'\n')
+    if config['mf_reference_run']:  f.write('mf_reference_run = {}'.format(mf_reference_run)+'\n')
+    if config['mf_cal_fname']:      f.write('mf_cal_fname = {}'.format(mf_cal_fname)+'\n')
+    if config['mf_ctc_fname']:      f.write('mf_ctc_fname = {}'.format(mf_ctc_fname)+'\n')
     
     # STIMULATION ARTIFACT    
-    f.write('fix_stim_artifact = '+ config[fix_stim_artifact]+'\n')
-    if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = '+ config[stim_artifact_tmin] +'\n')
-    if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = '+ config[stim_artifact_tmax]+'\n')
+    f.write('fix_stim_artifact = {}'.format(fix_stim_artifact)+'\n')
+    if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = {}'.format(stim_artifact_tmin)+'\n')
+    if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = {}'.format(stim_artifact_tmax)+'\n')
     
     # FILTER
-    if config['l_freq']:    f.write('l_freq = '+ config[l_freq]+'\n')
-    if config['h_freq']:    f.write('h_freq = '+ config[h_freq]+'\n')
+    if config['l_freq']:    f.write('l_freq = {}'.format(l_freq)+'\n')
+    if config['h_freq']:    f.write('h_freq = {}'.format(h_freq)+'\n')
 
     # RESAMPLING
     if config['resample_sfreq']:    f.write('resample_sfreq = {}'.format(resample_sfreq)+'\n')
