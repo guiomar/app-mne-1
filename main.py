@@ -12,6 +12,7 @@
 #import mne-study-template
 import os
 import json
+from shutil import copyfile
 
 # Current path
 __location__ = os.path.realpath(
@@ -30,6 +31,9 @@ with open(__location__+'/config.json') as config_json:
 
 bids_root = str(config['output']) 
 deriv_root = 'out_dir'
+
+subjects = ['0001']
+runs = ['01']
 
 # Bad channels
 find_flat_channels_meg = bool(config['find_flat_channels_meg'])
@@ -56,6 +60,18 @@ if config['h_freq']:            h_freq = float(config['h_freq'])
 if config['resample_sfreq']:    resample_sfreq = float(config['resample_sfreq'])
 if config['decim']:             decim = int(config['decim'])
 
+# AUTOMATIC REJECTION OF ARTIFACTS
+if config['reject']:            reject = dict(config['reject']) 
+if config['reject_tmin']:       reject_tmin = float(config['reject_tmin'])
+if config['reject_tmax']:       reject_tmax = float(config['reject_tmax'])
+
+# RENAME EXPERIMENTAL EVENTS
+if config['rename_events']:             rename_events = dict(config['rename_events']) 
+if config['on_rename_missing_events']:  on_rename_missing_events = Literal(config['on_rename_missing_events']) 
+if config['event_repeated']:            event_repeated = Literal(config['event_repeated']) 
+
+# EPOCHING
+
 
 
 '''
@@ -63,16 +79,14 @@ if config['decim']:             decim = int(config['decim'])
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
 deriv_root = 'out_dir'
 
-
-
 l_freq = .3
 h_freq = 100.
 decim = 10 #4
-'''
-subjects = ['0001']
-runs = ['01']
-
 reject = dict(mag=4e-12, eog=250e-6)
+
+'''
+
+
 conditions = ['standard', 'deviant', 'button']
 contrasts = [('deviant', 'standard')]
 decode = True
@@ -108,9 +122,9 @@ recreate_bem = True
 
 fname = 'mne_config1.py'
 
-with open(fname, 'w') as f:
-    #f.write('bids_root = '  + repr(bids_root)+'\n')
-    
+with open(fname, 'w') as f: 
+
+
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
     f.write('subjects = {}'.format(subjects)+'\n')
@@ -139,7 +153,17 @@ with open(fname, 'w') as f:
 
     # RESAMPLING
     if config['resample_sfreq']:    f.write('resample_sfreq = {}'.format(resample_sfreq)+'\n')
-    if config['decim']:     f.write('decim = {}'.format(decim)+'\n')   
+    if config['decim']:             f.write('decim = {}'.format(decim)+'\n')   
+
+    # AUTOMATIC REJECTION OF ARTIFACTS
+    if config['reject']:            f.write('reject = {}'.format(reject)+'\n') 
+    if config['reject_tmin']:       f.write('reject_tmin = {}'.format(reject_tmin)+'\n')
+    if config['reject_tmax']:       f.write('reject = {}'.format(reject_tmax)+'\n')
+
+    # RENAME EXPERIMENTAL EVENTS
+    if config['rename_events']:             f.write('reject = {}'.format(reject)+'\n')
+    if config['on_rename_missing_events']:  f.write('reject = {}'.format(reject)+'\n')
+    if config['event_repeated']:           f.write('reject = {}'.format(reject)+'\n')
 
 
 
@@ -157,3 +181,6 @@ os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config1.py \
 
 
 # Find the reports and make a copy in out_html folder
+for file in os.listdir("/out_dir"):
+    if file.endswith(".html"):
+        copyfile(os.path.join("/out_dir", file), os.path.join("/html_report", file))
