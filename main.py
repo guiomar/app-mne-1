@@ -121,9 +121,30 @@ with open(fname, 'w') as f:
     # RENAME EXPERIMENTAL EVENTS
     if config['rename_events']:             f.write("rerename_eventsject = '{}'".format(config['rerename_eventsject'])+'\n')
     if config['on_rename_missing_events']:  f.write("on_rename_missing_events = '{}'".format(config['on_rename_missing_events'])+'\n')
+    # HANDLING OF REPEATED EVENTS
     if config['event_repeated']:            f.write("event_repeated = '{}'".format(config['event_repeated'])+'\n')
 
-
+    # EPOCHING
+    if config['epochs_metadata_tmin']:            f.write("epochs_metadata_tmin = {}".format(config['epochs_metadata_tmin'])+'\n')
+    if config['epochs_metadata_tmax']:            f.write("epochs_metadata_tmax = {}".format(config['epochs_metadata_tmax'])+'\n')
+    if config['epochs_metadata_keep_first']:      f.write("epochs_metadata_keep_first = '{}'".format(config['epochs_metadata_keep_first'])+'\n')
+    if config['epochs_metadata_keep_last']:       f.write("epochs_metadata_keep_last = '{}'".format(config['epochs_metadata_keep_last'])+'\n')
+    if config['conditions']:                      f.write("conditions = '{}'".format(config['conditions'])+'\n')
+    if config['epochs_tmin']:            f.write("epochs_tmin = {}".format(config['epochs_tmin'])+'\n')
+    if config['epochs_tmax']:            f.write("epochs_tmax = {}".format(config['epochs_tmax'])+'\n')
+    if config['baseline']:            f.write("baseline = '{}'".format(config['baseline'])+'\n')
+    if config['contrasts']:            f.write("contrasts = '{}'".format(config['contrasts'])+'\n')
+  
+    # ARTIFACT REMOVAL
+    if config['use_ssp']:            f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
+    if config['use_ica']:            f.write("use_ica = {}".format(config['use_ica'])+'\n')
+    if config['ica_algorithm']:            f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
+    if config['ica_l_freq']:            f.write("ica_l_freq = {}".format(config['ica_l_freq'])+'\n')
+    if config['ica_max_iterations']:            f.write("ica_max_iterations = {}".format(config['ica_max_iterations'])+'\n')
+    if config['ica_n_components']:            f.write("ica_n_components = {}".format(config['ica_n_components'])+'\n')
+    if config['ica_decim']:            f.write("ica_decim = {}".format(config['ica_decim'])+'\n')
+    if config['ica_ctps_ecg_threshold']:            f.write("ica_ctps_ecg_threshold = {}".format(config['ica_ctps_ecg_threshold'])+'\n')
+    if config['ica_eog_threshold']:            f.write("ica_eog_threshold = {}".format(config['ica_eog_threshold'])+'\n')
 
     f.write('ch_types = {}'.format(ch_types)+'\n')
     f.write('conditions = {}'.format(conditions)+'\n')
