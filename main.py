@@ -30,7 +30,7 @@ with open(__location__+'/config.json') as config_json:
 bids_root = str(config['output']) 
 deriv_root = 'out_dir'
 
-subjects = ['01']
+subjects = ['0001']
 runs = ['01']
 
 '''
@@ -135,8 +135,8 @@ with open(fname, 'w') as f:
     if config['contrasts']:                 f.write("contrasts = {}".format(config['contrasts'])+'\n')
   
     # ARTIFACT REMOVAL
-    if config['use_ssp']:            f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
-    if config['use_ica']:            f.write("use_ica = {}".format(config['use_ica'])+'\n')
+    f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
+    f.write("use_ica = {}".format(config['use_ica'])+'\n')
     if config['ica_algorithm']:      f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
     if config['ica_l_freq']:         f.write("ica_l_freq = {}".format(config['ica_l_freq'])+'\n')
     if config['ica_max_iterations']: f.write("ica_max_iterations = {}".format(config['ica_max_iterations'])+'\n')
