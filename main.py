@@ -133,7 +133,7 @@ with open(fname, 'w') as f:
     if config['epochs_tmin']:               f.write("epochs_tmin = {}".format(config['epochs_tmin'])+'\n')
     if config['epochs_tmax']:               f.write("epochs_tmax = {}".format(config['epochs_tmax'])+'\n')
     if config['baseline']:                  f.write("baseline = '{}'".format(config['baseline'])+'\n')
-    if config['contrasts']:                 f.write("contrasts = '{}'".format(config['contrasts'])+'\n')
+    if config['contrasts']:                 f.write("contrasts = {}".format(config['contrasts'])+'\n')
   
     # ARTIFACT REMOVAL
     if config['use_ssp']:            f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
