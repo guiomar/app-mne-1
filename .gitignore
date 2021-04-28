@@ -1,6 +1,6 @@
 .DS_Store
-config.json
 out_dir
 html_report
 config_files
+config.json
 mne_config.py
