@@ -120,7 +120,7 @@ with open(fname, 'w') as f:
     if config['rename_events']:             f.write("rename_events = {}".format(config['rename_events'])+'\n')
     if config['on_rename_missing_events']:  f.write("on_rename_missing_events = '{}'".format(config['on_rename_missing_events'])+'\n')
     # HANDLING OF REPEATED EVENTS
-    if config['event_repeated']:            f.write("event_repeated = {}".format(config['event_repeated'])+'\n')
+    if config['event_repeated']:            f.write("event_repeated = '{}'".format(config['event_repeated'])+'\n')
 
     # EPOCHING
     if config['epochs_metadata_tmin']:      f.write("epochs_metadata_tmin = {}".format(config['epochs_metadata_tmin'])+'\n')
