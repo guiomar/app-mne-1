@@ -117,7 +117,7 @@ with open(fname, 'w') as f:
     if config['reject_tmax']:       f.write("reject_tmax = '{}'".format(config['reject_tmax'])+'\n')
 
     # RENAME EXPERIMENTAL EVENTS
-    if config['rename_events']:             f.write("rerename_events = {}".format(config['rerename_events'])+'\n')
+    if config['rename_events']:             f.write("rename_events = {}".format(config['rename_events'])+'\n')
     if config['on_rename_missing_events']:  f.write("on_rename_missing_events = {}".format(config['on_rename_missing_events'])+'\n')
     # HANDLING OF REPEATED EVENTS
     if config['event_repeated']:            f.write("event_repeated = {}".format(config['event_repeated'])+'\n')
