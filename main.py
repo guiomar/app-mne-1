@@ -44,17 +44,16 @@ decim = 10 #4
 reject = dict(mag=4e-12, eog=250e-6)
 conditions = ['standard', 'deviant', 'button']
 contrasts = [('deviant', 'standard')]
-'''
 
 decode = True
 daysback = -365 * 110
 on_error = 'debug'
 
-ch_types = ['meg']
-
-
 '''
 
+ch_types = ['meg']
+
+'''
 #study_name = 'ds000248'
 subjects = ['01']
 rename_events = {'Smiley': 'Emoji','Button': 'Switch'}
@@ -86,11 +85,12 @@ with open(fname, 'w') as f:
     f.write('subjects = {}'.format(subjects)+'\n')
     f.write('runs = {}'.format(runs)+'\n')
 
+       
+    # MAXFLTER (for fif)
     # Bad channels
     f.write('find_flat_channels_meg = {}'.format(config['find_flat_channels_meg'])+'\n')
     f.write('find_noisy_channels_meg = {}'.format(config['find_noisy_channels_meg'])+'\n')
-    
-    # MAXFLTER (for fif)
+  
     f.write('use_maxwell_filter = {}'.format(config['use_maxwell_filter'])+'\n')
     if config['mf_st_duration']:    f.write('mf_st_duration = {}'.format(config['mf_st_duration'])+'\n')
     if config['mf_head_origin']:    f.write('mf_head_origin = {}'.format(config['mf_st_dmf_head_originuration'])+'\n')
@@ -117,26 +117,26 @@ with open(fname, 'w') as f:
     if config['reject_tmax']:       f.write("reject_tmax = '{}'".format(config['reject_tmax'])+'\n')
 
     # RENAME EXPERIMENTAL EVENTS
-    if config['rename_events']:             f.write("rerename_eventsject = '{}'".format(config['rerename_eventsject'])+'\n')
-    if config['on_rename_missing_events']:  f.write("on_rename_missing_events = '{}'".format(config['on_rename_missing_events'])+'\n')
+    if config['rename_events']:             f.write("rerename_eventsject = {}".format(config['rerename_eventsject'])+'\n')
+    if config['on_rename_missing_events']:  f.write("on_rename_missing_events = {}".format(config['on_rename_missing_events'])+'\n')
     # HANDLING OF REPEATED EVENTS
-    if config['event_repeated']:            f.write("event_repeated = '{}'".format(config['event_repeated'])+'\n')
+    if config['event_repeated']:            f.write("event_repeated = {}".format(config['event_repeated'])+'\n')
 
     # EPOCHING
     if config['epochs_metadata_tmin']:      f.write("epochs_metadata_tmin = {}".format(config['epochs_metadata_tmin'])+'\n')
     if config['epochs_metadata_tmax']:      f.write("epochs_metadata_tmax = {}".format(config['epochs_metadata_tmax'])+'\n')
-    if config['epochs_metadata_keep_first']: f.write("epochs_metadata_keep_first = '{}'".format(config['epochs_metadata_keep_first'])+'\n')
-    if config['epochs_metadata_keep_last']: f.write("epochs_metadata_keep_last = '{}'".format(config['epochs_metadata_keep_last'])+'\n')
+    if config['epochs_metadata_keep_first']: f.write("epochs_metadata_keep_first = {}".format(config['epochs_metadata_keep_first'])+'\n')
+    if config['epochs_metadata_keep_last']: f.write("epochs_metadata_keep_last = {}".format(config['epochs_metadata_keep_last'])+'\n')
     if config['conditions']:                f.write("conditions = {}".format(config['conditions'])+'\n')
     if config['epochs_tmin']:               f.write("epochs_tmin = {}".format(config['epochs_tmin'])+'\n')
     if config['epochs_tmax']:               f.write("epochs_tmax = {}".format(config['epochs_tmax'])+'\n')
-    if config['baseline']:                  f.write("baseline = '{}'".format(config['baseline'])+'\n')
+    if config['baseline']:                  f.write("baseline = {}".format(config['baseline'])+'\n')
     if config['contrasts']:                 f.write("contrasts = {}".format(config['contrasts'])+'\n')
   
     # ARTIFACT REMOVAL
     if config['use_ssp']:            f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
     if config['use_ica']:            f.write("use_ica = {}".format(config['use_ica'])+'\n')
-    if config['ica_algorithm']:      f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
+    if config['ica_algorithm']:      f.write("ica_algorithm = {}".format(config['ica_algorithm'])+'\n')
     if config['ica_l_freq']:         f.write("ica_l_freq = {}".format(config['ica_l_freq'])+'\n')
     if config['ica_max_iterations']: f.write("ica_max_iterations = {}".format(config['ica_max_iterations'])+'\n')
     if config['ica_n_components']:   f.write("ica_n_components = {}".format(config['ica_n_components'])+'\n')
@@ -145,7 +145,7 @@ with open(fname, 'w') as f:
     if config['ica_eog_threshold']:  f.write("ica_eog_threshold = {}".format(config['ica_eog_threshold'])+'\n')
 
     f.write('ch_types = {}'.format(ch_types)+'\n')
-    f.write('decode = {}'.format(decode)+'\n')
+   # f.write('decode = {}'.format(decode)+'\n')
  
     f.close()
 
