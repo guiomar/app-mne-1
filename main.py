@@ -42,12 +42,10 @@ l_freq = .3
 h_freq = 100.
 decim = 10 #4
 reject = dict(mag=4e-12, eog=250e-6)
-
+conditions = ['standard', 'deviant', 'button']
+contrasts = [('deviant', 'standard')]
 '''
 
-
-#conditions = ['standard', 'deviant', 'button']
-#contrasts = [('deviant', 'standard')]
 decode = True
 daysback = -365 * 110
 on_error = 'debug'
@@ -78,7 +76,7 @@ recreate_bem = True
 
 # Create new MNE config .py file
 
-fname = 'mne_config1.py'
+fname = 'mne_config.py'
 
 with open(fname, 'w') as f: 
 
@@ -155,7 +153,7 @@ with open(fname, 'w') as f:
 
 
 # Run mne-study-template python script
-os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config1.py \
+os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config.py \
     --steps=preprocessing,sensor,report')
 
 
