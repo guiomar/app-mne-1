@@ -3,4 +3,4 @@ config.json
 out_dir
 html_report
 config_files
-mne_config1.py
+mne_config.py
