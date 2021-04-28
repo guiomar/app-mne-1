@@ -147,8 +147,6 @@ with open(fname, 'w') as f:
     if config['ica_eog_threshold']:  f.write("ica_eog_threshold = {}".format(config['ica_eog_threshold'])+'\n')
 
     f.write('ch_types = {}'.format(ch_types)+'\n')
-    f.write('conditions = {}'.format(conditions)+'\n')
-    f.write('contrasts = {}'.format(contrasts)+'\n')
     f.write('decode = {}'.format(decode)+'\n')
  
     f.close()
