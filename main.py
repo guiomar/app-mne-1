@@ -118,7 +118,7 @@ with open(fname, 'w') as f:
 
     # RENAME EXPERIMENTAL EVENTS
     if config['rename_events']:             f.write("rename_events = {}".format(config['rename_events'])+'\n')
-    if config['on_rename_missing_events']:  f.write("on_rename_missing_events = {}".format(config['on_rename_missing_events'])+'\n')
+    if config['on_rename_missing_events']:  f.write("on_rename_missing_events = '{}'".format(config['on_rename_missing_events'])+'\n')
     # HANDLING OF REPEATED EVENTS
     if config['event_repeated']:            f.write("event_repeated = {}".format(config['event_repeated'])+'\n')
 
@@ -136,7 +136,7 @@ with open(fname, 'w') as f:
     # ARTIFACT REMOVAL
     if config['use_ssp']:            f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
     if config['use_ica']:            f.write("use_ica = {}".format(config['use_ica'])+'\n')
-    if config['ica_algorithm']:      f.write("ica_algorithm = {}".format(config['ica_algorithm'])+'\n')
+    if config['ica_algorithm']:      f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
     if config['ica_l_freq']:         f.write("ica_l_freq = {}".format(config['ica_l_freq'])+'\n')
     if config['ica_max_iterations']: f.write("ica_max_iterations = {}".format(config['ica_max_iterations'])+'\n')
     if config['ica_n_components']:   f.write("ica_n_components = {}".format(config['ica_n_components'])+'\n')
