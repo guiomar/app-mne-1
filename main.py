@@ -83,11 +83,6 @@ with open(fname, 'w') as f:
     #For freesurfer
     if config['subjects_dir']:      f.write('subjects_dir = {}'.format(config['subjects_dir'])+'\n')
 
- 
-    f.write('subjects = {}'.format(subjects)+'\n')
-    f.write('runs = {}'.format(runs)+'\n')
-
-
     if config['study_name']:        f.write('study_name = {}'.format(config['study_name'])+'\n')
     if config['interactive']:       f.write('interactive = {}'.format(config['interactive'])+'\n')
     if config['crop']:              f.write('crop = {}'.format(config['crop'])+'\n')
@@ -161,10 +156,10 @@ with open(fname, 'w') as f:
     if config['contrasts']:                 f.write("contrasts = {}".format(config['contrasts'])+'\n')
   
     # ARTIFACT REMOVAL
-    f.write("spatial_filter = {}".format(config['spatial_filter'])+'\n')
+    if config['spatial_filter']:     f.write("spatial_filter = {}".format(config['spatial_filter'])+'\n')
 
-    f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
-    f.write("use_ica = {}".format(config['use_ica'])+'\n')
+    #f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
+    #f.write("use_ica = {}".format(config['use_ica'])+'\n')
     if config['ica_algorithm']:      f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
     if config['ica_l_freq']:         f.write("ica_l_freq = {}".format(config['ica_l_freq'])+'\n')
     if config['ica_max_iterations']: f.write("ica_max_iterations = {}".format(config['ica_max_iterations'])+'\n')
