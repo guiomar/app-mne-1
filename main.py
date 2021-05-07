@@ -30,9 +30,6 @@ with open(__location__+'/config.json') as config_json:
 bids_root = str(config['output']) 
 deriv_root = 'out_dir'
 
-subjects = ['0001']
-runs = ['01']
-
 '''
 #study_name = 'ds000246'
 bids_root = str(config['output']) # '/Users/guiomar/Projects/ds000246'
@@ -52,7 +49,6 @@ on_error = 'debug'
 
 '''
 
-ch_types = ['meg']
 
 '''
 #study_name = 'ds000248'
@@ -80,12 +76,42 @@ fname = 'mne_config.py'
 
 with open(fname, 'w') as f: 
 
+    # GENERAL SETTINGS
 
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
+    #For freesurfer
+    if config['subjects_dir']:      f.write('subjects_dir = {}'.format(config['subjects_dir'])+'\n')
+
+ 
     f.write('subjects = {}'.format(subjects)+'\n')
     f.write('runs = {}'.format(runs)+'\n')
 
+
+    if config['study_name']:        f.write('study_name = {}'.format(config['study_name'])+'\n')
+    if config['interactive']:       f.write('interactive = {}'.format(config['interactive'])+'\n')
+    if config['crop']:              f.write('crop = {}'.format(config['crop'])+'\n')
+ 
+    if config['sessions']:          f.write('sessions = {}'.format(config['sessions'])+'\n')
+    if config['task']:              f.write('task = {}'.format(config['task'])+'\n')
+    if config['runs']:              f.write('runs = {}'.format(config['runs'])+'\n')
+    if config['acq']:               f.write('acq = {}'.format(config['acq'])+'\n')
+    if config['proc']:              f.write('proc = {}'.format(config['proc'])+'\n')
+    if config['rec']:               f.write('rec = {}'.format(config['rec'])+'\n')
+    if config['space']:             f.write('space = {}'.format(config['space'])+'\n')
+    if config['subjects']:          f.write('subjects = {}'.format(config['subjects'])+'\n')
+    if config['exclude_subjects']:  f.write('exclude_subjects = {}'.format(config['exclude_subjects'])+'\n')
+ 
+    if config['process_er']:        f.write('process_er = {}'.format(config['process_er'])+'\n')
+    if config['ch_types']:          f.write('ch_types = {}'.format(config['ch_types'])+'\n')
+    if config['data_type']:         f.write('data_type = {}'.format(config['data_type'])+'\n')
+    if config['eog_channels']:      f.write('eog_channels = {}'.format(config['eog_channels'])+'\n')
+    if config['eeg_bipolar_channels']:  f.write('eeg_bipolar_channels = {}'.format(config['eeg_bipolar_channels'])+'\n')
+    if config['eeg_reference']:     f.write('eeg_reference = {}'.format(config['eeg_reference'])+'\n')
+    if config['eeg_template_montage']:  f.write('eeg_template_montage = {}'.format(config['eeg_template_montage'])+'\n')
+    if config['drop_channels']:     f.write('drop_channels = {}'.format(config['drop_channels'])+'\n')
+    if config['analyze_channels']:  f.write('analyze_channels = {}'.format(config['analyze_channels'])+'\n')
+ 
        
     # MAXFLTER (for fif)
     # Bad channels
@@ -135,6 +161,8 @@ with open(fname, 'w') as f:
     if config['contrasts']:                 f.write("contrasts = {}".format(config['contrasts'])+'\n')
   
     # ARTIFACT REMOVAL
+    f.write("spatial_filter = {}".format(config['spatial_filter'])+'\n')
+
     f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
     f.write("use_ica = {}".format(config['use_ica'])+'\n')
     if config['ica_algorithm']:      f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
