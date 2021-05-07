@@ -81,6 +81,7 @@ with open(fname, 'w') as f:
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
     #For freesurfer
+ '''
     if config['subjects_dir']:      f.write('subjects_dir = {}'.format(config['subjects_dir'])+'\n')
 
     if config['study_name']:        f.write('study_name = {}'.format(config['study_name'])+'\n')
@@ -96,6 +97,7 @@ with open(fname, 'w') as f:
     if config['space']:             f.write('space = {}'.format(config['space'])+'\n')
     if config['subjects']:          f.write('subjects = {}'.format(config['subjects'])+'\n')
     if config['exclude_subjects']:  f.write('exclude_subjects = {}'.format(config['exclude_subjects'])+'\n')
+ '''
  
     if config['process_er']:        f.write('process_er = {}'.format(config['process_er'])+'\n')
     if config['ch_types']:          f.write('ch_types = {}'.format(config['ch_types'])+'\n')
