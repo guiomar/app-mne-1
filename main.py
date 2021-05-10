@@ -103,7 +103,7 @@ with open(fname, 'w') as f:
     if config['data_type']:         f.write("data_type = '{}'".format(config['data_type'])+'\n')
     if config['eog_channels']:      f.write('eog_channels = {}'.format(config['eog_channels'])+'\n')
     if config['eeg_bipolar_channels']:  f.write('eeg_bipolar_channels = {}'.format(config['eeg_bipolar_channels'])+'\n')
-    if config['eeg_reference']:     f.write('eeg_reference = {}'.format(config['eeg_reference'])+'\n')
+    if config['eeg_reference']:     f.write("eeg_reference = '{}'".format(config['eeg_reference'])+'\n')
     if config['eeg_template_montage']:  f.write('eeg_template_montage = {}'.format(config['eeg_template_montage'])+'\n')
     if config['drop_channels']:     f.write('drop_channels = {}'.format(config['drop_channels'])+'\n')
     if config['analyze_channels']:  f.write('analyze_channels = {}'.format(config['analyze_channels'])+'\n')
