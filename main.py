@@ -99,7 +99,7 @@ with open(fname, 'w') as f:
     if config['exclude_subjects']:  f.write('exclude_subjects = {}'.format(config['exclude_subjects'])+'\n')
     '''
     if config['process_er']:        f.write('process_er = {}'.format(config['process_er'])+'\n')
-    if config['ch_types']:          f.write("ch_types = '{}'".format(config['ch_types'])+'\n')
+    if config['ch_types']:          f.write("ch_types = {}".format(config['ch_types'])+'\n')
     if config['data_type']:         f.write('data_type = {}'.format(config['data_type'])+'\n')
     if config['eog_channels']:      f.write('eog_channels = {}'.format(config['eog_channels'])+'\n')
     if config['eeg_bipolar_channels']:  f.write('eeg_bipolar_channels = {}'.format(config['eeg_bipolar_channels'])+'\n')
