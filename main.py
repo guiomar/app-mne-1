@@ -157,7 +157,7 @@ with open(fname, 'w') as f:
     if config['contrasts']:                 f.write("contrasts = {}".format(config['contrasts'])+'\n')
   
     # ARTIFACT REMOVAL
-    if config['spatial_filter']:     f.write("spatial_filter = {}".format(config['spatial_filter'])+'\n')
+    if config['spatial_filter']:     f.write("spatial_filter = '{}'".format(config['spatial_filter'])+'\n')
 
     #f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
     #f.write("use_ica = {}".format(config['use_ica'])+'\n')
