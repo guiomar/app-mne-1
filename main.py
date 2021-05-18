@@ -210,7 +210,7 @@ with open(fname, 'w') as f:
 
 # Run mne-study-template python script
 os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config.py \
-    --steps=preprocessing,sensor,report')
+    --steps=preprocessing,report')
 
 
 # Find the reports and make a copy in out_html folder
