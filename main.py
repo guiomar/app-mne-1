@@ -170,6 +170,8 @@ with open(fname, 'w') as f:
     if config['reject_tmin']:       f.write("reject_tmin = '{}'".format(config['reject_tmin'])+'\n')
     if config['reject_tmax']:       f.write("reject_tmax = '{}'".format(config['reject_tmax'])+'\n')
 
+    f.close() 
+
 '''
     # SENSOR
 
@@ -201,12 +203,7 @@ with open(fname, 'w') as f:
     # Inverse solution
     if config['inverse_method']:    f.write("inverse_method = {}".format(config['inverse_method'])+'\n')
     if config['noise_cov']:         f.write("noise_cov = {}".format(config['noise_cov'])+'\n')
- 
 '''
-    f.close()
-
-
-
 
 # Run mne-study-template python script
 os.system( mnest_path + '/run.py --config=' + __location__+'/mne_config.py \
