@@ -41,8 +41,9 @@ h_freq = 100.
 decim = 10 #4
 reject = dict(mag=4e-12, eog=250e-6)
 conditions = ['standard', 'deviant', 'button']
-contrasts = [('deviant', 'standard')]
 
+
+contrasts = [('deviant', 'standard')]
 decode = True
 daysback = -365 * 110
 on_error = 'debug'
@@ -55,19 +56,20 @@ on_error = 'debug'
 subjects = ['01']
 rename_events = {'Smiley': 'Emoji','Button': 'Switch'}
 conditions = ['Auditory', 'Visual', 'Auditory/Left', 'Auditory/Right']
-contrasts = [('Visual', 'Auditory'),('Auditory/Right', 'Auditory/Left')]
 ch_types = ['meg']
 #mf_reference_run = '1' ##bl2bids just 1 not 01
 find_flat_channels_meg = True
 find_noisy_channels_meg = True
 use_maxwell_filter = True
 process_er = True
-#noise_cov = 'emptyroom'
+reject = dict(mag=4e-12, eog=250e-6)
 
+contrasts = [('Visual', 'Auditory'),('Auditory/Right', 'Auditory/Left')]
 bem_mri_images = 'FLASH'
 recreate_bem = True
+noise_cov = 'emptyroom'
 
-#reject = dict(mag=4e-12, eog=250e-6)
+
 '''
 
 # Create new MNE config .py file
@@ -76,7 +78,7 @@ fname = 'mne_config.py'
 
 with open(fname, 'w') as f: 
 
-    # GENERAL SETTINGS
+    # == GENERAL SETTINGS ==
 
     f.write("bids_root = '{}'".format(bids_root)+'\n')
     f.write("deriv_root = '{}'".format(deriv_root)+'\n')
@@ -109,7 +111,7 @@ with open(fname, 'w') as f:
     if config['analyze_channels']:  f.write('analyze_channels = {}'.format(config['analyze_channels'])+'\n')
  
        
-    # MAXFLTER (for fif)
+    # == MAXFLTER (for fif) ==
     # Bad channels
     f.write('find_flat_channels_meg = {}'.format(config['find_flat_channels_meg'])+'\n')
     f.write('find_noisy_channels_meg = {}'.format(config['find_noisy_channels_meg'])+'\n')
@@ -120,58 +122,87 @@ with open(fname, 'w') as f:
     if config['mf_reference_run']:  f.write('mf_reference_run = {}'.format(config['mf_reference_run'])+'\n')
     if config['mf_cal_fname']:      f.write('mf_cal_fname = {}'.format(config['mf_cal_fname'])+'\n')
     if config['mf_ctc_fname']:      f.write('mf_ctc_fname = {}'.format(config['mf_ctc_fname'])+'\n')
-    
-    # STIMULATION ARTIFACT    
-    f.write('fix_stim_artifact = {}'.format(config['fix_stim_artifact'])+'\n')
-    if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = {}'.format(config['stim_artifact_tmin'])+'\n')
-    if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = {}'.format(config['stim_artifact_tmax'])+'\n')
-    
-    # FILTER
+       
+    # == FILTER & RESAMPLING ==
+    # Filter
     if config['l_freq']:    f.write('l_freq = {}'.format(config['l_freq'])+'\n')
     if config['h_freq']:    f.write('h_freq = {}'.format(config['h_freq'])+'\n')
 
-    # RESAMPLING
+    # Resampling
     if config['resample_sfreq']:    f.write('resample_sfreq = {}'.format(config['resample_sfreq'])+'\n')
     if config['decim']:             f.write('decim = {}'.format(config['decim'])+'\n')   
 
-    # AUTOMATIC REJECTION OF ARTIFACTS
+    # == EPOCHING ==
+    if config['rename_events']:     f.write("rename_events = {}".format(config['rename_events'])+'\n')
+    #?? if config['on_rename_missing_events']:  f.write("on_rename_missing_events = '{}'".format(config['on_rename_missing_events'])+'\n')
+    if config['event_repeated']:    f.write("event_repeated = '{}'".format(config['event_repeated'])+'\n')
+    if config['conditions']:        f.write("conditions = {}".format(config['conditions'])+'\n')
+    if config['epochs_tmin']:       f.write("epochs_tmin = {}".format(config['epochs_tmin'])+'\n')
+    if config['epochs_tmax']:       f.write("epochs_tmax = {}".format(config['epochs_tmax'])+'\n')
+    if config['baseline']:          f.write("baseline = {}".format(config['baseline'])+'\n')
+  
+    if config['epochs_metadata_tmin']:       f.write("epochs_metadata_tmin = {}".format(config['epochs_metadata_tmin'])+'\n')
+    if config['epochs_metadata_tmax']:       f.write("epochs_metadata_tmax = {}".format(config['epochs_metadata_tmax'])+'\n')
+    if config['epochs_metadata_keep_first']: f.write("epochs_metadata_keep_first = {}".format(config['epochs_metadata_keep_first'])+'\n')
+    if config['epochs_metadata_keep_last']:  f.write("epochs_metadata_keep_last = {}".format(config['epochs_metadata_keep_last'])+'\n')
+
+
+    # == ARTIFACT REMOVAL ==
+
+    # Stimulation Artifact    
+    f.write('fix_stim_artifact = {}'.format(config['fix_stim_artifact'])+'\n')
+    if config['stim_artifact_tmin']:  f.write('stim_artifact_tmin = {}'.format(config['stim_artifact_tmin'])+'\n')
+    if config['stim_artifact_tmax']:  f.write('stim_artifact_tmax = {}'.format(config['stim_artifact_tmax'])+'\n')
+ 
+    # SSP & ICA
+    if config['spatial_filter']:    f.write("spatial_filter = '{}'".format(config['spatial_filter'])+'\n')
+    # add: ica_reject
+    if config['ica_algorithm']:     f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
+    if config['ica_l_freq']:        f.write("ica_l_freq = {}".format(config['ica_l_freq'])+'\n')
+    if config['ica_max_iterations']: f.write("ica_max_iterations = {}".format(config['ica_max_iterations'])+'\n')
+    if config['ica_n_components']:  f.write("ica_n_components = {}".format(config['ica_n_components'])+'\n')
+    if config['ica_decim']:         f.write("ica_decim = {}".format(config['ica_decim'])+'\n')
+    if config['ica_ctps_ecg_threshold']: f.write("ica_ctps_ecg_threshold = {}".format(config['ica_ctps_ecg_threshold'])+'\n')
+    if config['ica_eog_threshold']: f.write("ica_eog_threshold = {}".format(config['ica_eog_threshold'])+'\n')
+ 
+    # Amplitude-Based
     if config['reject']:            f.write("reject = {}".format(config['reject'])+'\n') 
     if config['reject_tmin']:       f.write("reject_tmin = '{}'".format(config['reject_tmin'])+'\n')
     if config['reject_tmax']:       f.write("reject_tmax = '{}'".format(config['reject_tmax'])+'\n')
 
-    # RENAME EXPERIMENTAL EVENTS
-    if config['rename_events']:             f.write("rename_events = {}".format(config['rename_events'])+'\n')
-    if config['on_rename_missing_events']:  f.write("on_rename_missing_events = '{}'".format(config['on_rename_missing_events'])+'\n')
-    # HANDLING OF REPEATED EVENTS
-    if config['event_repeated']:            f.write("event_repeated = '{}'".format(config['event_repeated'])+'\n')
+'''
+    # SENSOR
 
-    # EPOCHING
-    if config['epochs_metadata_tmin']:      f.write("epochs_metadata_tmin = {}".format(config['epochs_metadata_tmin'])+'\n')
-    if config['epochs_metadata_tmax']:      f.write("epochs_metadata_tmax = {}".format(config['epochs_metadata_tmax'])+'\n')
-    if config['epochs_metadata_keep_first']: f.write("epochs_metadata_keep_first = {}".format(config['epochs_metadata_keep_first'])+'\n')
-    if config['epochs_metadata_keep_last']: f.write("epochs_metadata_keep_last = {}".format(config['epochs_metadata_keep_last'])+'\n')
-    if config['conditions']:                f.write("conditions = {}".format(config['conditions'])+'\n')
-    if config['epochs_tmin']:               f.write("epochs_tmin = {}".format(config['epochs_tmin'])+'\n')
-    if config['epochs_tmax']:               f.write("epochs_tmax = {}".format(config['epochs_tmax'])+'\n')
-    if config['baseline']:                  f.write("baseline = {}".format(config['baseline'])+'\n')
-    if config['contrasts']:                 f.write("contrasts = {}".format(config['contrasts'])+'\n')
-  
-    # ARTIFACT REMOVAL
-    if config['spatial_filter']:     f.write("spatial_filter = '{}'".format(config['spatial_filter'])+'\n')
+    # == STATS ==
+    if config['contrasts']:         f.write("contrasts = {}".format(config['contrasts'])+'\n')
+    if config['decode']:            f.write("decode = {}".format(config['decode'])+'\n')
+    if config['decoding_metric']:   f.write("decoding_metric = {}".format(config['decoding_metric'])+'\n')
+    if config['decoding_n_splits']: f.write("decoding_n_splits = {}".format(config['decoding_n_splits'])+'\n')
+    if config['n_boot']:            f.write("n_boot = {}".format(config['n_boot'])+'\n')
 
-    #f.write("use_ssp = {}".format(config['use_ssp'])+'\n')
-    #f.write("use_ica = {}".format(config['use_ica'])+'\n')
-    if config['ica_algorithm']:      f.write("ica_algorithm = '{}'".format(config['ica_algorithm'])+'\n')
-    if config['ica_l_freq']:         f.write("ica_l_freq = {}".format(config['ica_l_freq'])+'\n')
-    if config['ica_max_iterations']: f.write("ica_max_iterations = {}".format(config['ica_max_iterations'])+'\n')
-    if config['ica_n_components']:   f.write("ica_n_components = {}".format(config['ica_n_components'])+'\n')
-    if config['ica_decim']:          f.write("ica_decim = {}".format(config['ica_decim'])+'\n')
-    if config['ica_ctps_ecg_threshold']:     f.write("ica_ctps_ecg_threshold = {}".format(config['ica_ctps_ecg_threshold'])+'\n')
-    if config['ica_eog_threshold']:  f.write("ica_eog_threshold = {}".format(config['ica_eog_threshold'])+'\n')
-
-   # f.write('ch_types = {}'.format(ch_types)+'\n')
-   # f.write('decode = {}'.format(decode)+'\n')
+    # == TF ==
+    if config['time_frequency_conditions']:  f.write("time_frequency_conditions = {}".format(config['time_frequency_conditions'])+'\n')
  
+
+    # SOURCES
+
+    # General Settings
+    if config['run_source_estimation']: f.write("run_source_estimation = {}".format(config['run_source_estimation'])+'\n')
+
+    # BEM surface
+    if config['bem_mri_images']:        f.write("bem_mri_images = {}".format(config['bem_mri_images'])+'\n')
+    if config['recreate_bem']:          f.write("recreate_bem = {}".format(config['recreate_bem'])+'\n')
+
+    # Source space & forward solution
+    if config['mri_t1_path_generator']: f.write("mri_t1_path_generator = {}".format(config['mri_t1_path_generator'])+'\n')
+    if config['spacing']:               f.write("spacing = {}".format(config['spacing'])+'\n')
+    if config['mindist']:               f.write("mindist = {}".format(config['mindist'])+'\n')
+
+    # Inverse solution
+    if config['inverse_method']:    f.write("inverse_method = {}".format(config['inverse_method'])+'\n')
+    if config['noise_cov']:         f.write("noise_cov = {}".format(config['noise_cov'])+'\n')
+ 
+'''
     f.close()
 
 
