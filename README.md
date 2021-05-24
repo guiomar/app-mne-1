@@ -9,8 +9,8 @@ It allows to:
  1) Apply low- and high-pass filters. 
  1) Extract epochs. 
  1) Run spatial filters to detect and remove artifacts (e.g.eye blink and heart beat artifacts).
- 1.1) Run Independant Component Analysis (ICA) for artifact correction. 
- 1.1) Run Signal Subspace Projections (SSP) for artifact correction.
+    1. Run Independant Component Analysis (ICA) for artifact correction. 
+    1. Run Signal Subspace Projections (SSP) for artifact correction.
  1) Apply the stimated spatial filters (e.g. ICA, SSP) projections and obtain the cleaned epochs. 
 
 
