@@ -22,7 +22,7 @@ Input data should follow the Brain Imaging Data Structure (BIDS).
 
 ## References
 
-*MEEG Pipeline*  
+*MEEG Pipeline:*  
 Jas M, Larson E, Engemann DA, Leppäkangas J, Taulu S, Hämäläinen M, Gramfort A.  
 **A reproducible MEG/EEG group study with the MNE software: recommendations, quality assessments, and good practices**  
 Frontiers in neuroscience, 12, 2018. https://doi.org/10.3389/fnins.2018.00530
@@ -45,10 +45,3 @@ Scientific Data, 6, 103, 2019. https://doi.org/10.1038/s41597-019-0104-8
 Gramfort A, Luessi M, Larson E, Engemann DA, Strohmeier D, Brodbeck C, Goj R, Jas M, Brooks T, Parkkonen L, and Hämäläinen MS.  
 **MEG and EEG data analysis with MNE-Python**  
 Frontiers in Neuroscience, 7(267):1–13, 2013. https://doi.org/10.3389/fnins.2013.00267
-
-*MNE inverse imaging implementations:*  
-Gramfort A, Luessi M, Larson E, Engemann DA, Strohmeier D, Brodbeck C, Parkkonen L, and Hämäläinen MS.  
-**MNE software for processing MEG and EEG data**  
-NeuroImage, 86:446–460, 2014. https://doi.org/10.1016/j.neuroimage.2013.10.027.
-
-
